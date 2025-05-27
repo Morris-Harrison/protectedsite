@@ -1,22 +1,11 @@
 <?php
 session_start();
-require_once '../config/db.php';
-if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
+if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Protected Page</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Welcome to the protected content!</h1>
-  <p>You have successfully logged in.</p>
-  <a href="logout.php">Logout</a>
-</body>
-</html>
+<h2>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h2>
+<p>This is a protected page.</p>
+<a href="logout.php">Logout</a>
